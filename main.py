@@ -42,9 +42,4 @@ while True:
         if cookieAmt >= int(Prodpi):
             i = orderedProductPrices.index(Prodpi)
     orderedProducts[i]
-    try:
-        cursor = driver.find_elements(By.CSS_SELECTOR, "#sectionRight #products .unlocked.enabled")
-        cursor.click()
-    except NoSuchElementException:
-        time.sleep(1)
     time.sleep(1)
