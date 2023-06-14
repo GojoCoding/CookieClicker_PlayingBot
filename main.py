@@ -1,4 +1,5 @@
 import os
+import random
 from selenium import webdriver
 from selenium.common import NoSuchElementException
 
@@ -38,9 +39,17 @@ orderedProducts = driver.find_elements(By.CSS_SELECTOR,)
 
 while True:
     cookieButton.click()
-    i = 0
-    for Prodpi in orderedProductPrices:
-        if cookieAmt >= int(Prodpi):
-            i = orderedProductPrices.index(Prodpi)
-    orderedProducts[i]
+    rand = random.uniform(1, 2)
+    if rand == 1:
+        # Product Selection
+        for Prodpi in orderedProductPrices:
+            if cookieAmt >= int(Prodpi):
+                i = orderedProductPrices.index(Prodpi)
+        orderedProducts[i].click()
+    # else:
+    #     # Upgrade Selection
+    #     for Prodpi in orderedProductPrices:
+    #         if cookieAmt >= int(Prodpi):
+    #             i = orderedProductPrices.index(Prodpi)
+    #     orderedProducts[i].click()
     time.sleep(1)
