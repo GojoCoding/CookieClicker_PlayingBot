@@ -15,6 +15,7 @@ chrome_options = Options()
 # Keeps browser open
 chrome_options.add_experimental_option("detach", True)
 
+
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 driver.get("https://orteil.dashnet.org/cookieclicker/")
 
@@ -31,10 +32,18 @@ languageSelect.click()
 
 # Clicking Cookie Button
 cookieButton = driver.find_element(By.ID, "bigCookie")
+orderedProductPrices = driver.find_elements(By.CSS_SELECTOR,)
+orderedProducts = driver.find_elements(By.CSS_SELECTOR,)
+
 while True:
     cookieButton.click()
+    i = 0
+    for Prodpi in orderedProductPrices:
+        if cookieAmt >= int(Prodpi):
+            i = orderedProductPrices.index(Prodpi)
+    orderedProducts[i]
     try:
-        cursor = driver.find_element(By.CSS_SELECTOR, "#sectionRight #products .unlocked.enabled")
+        cursor = driver.find_elements(By.CSS_SELECTOR, "#sectionRight #products .unlocked.enabled")
         cursor.click()
     except NoSuchElementException:
         time.sleep(1)
