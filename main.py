@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.common import NoSuchElementException
 
@@ -10,7 +11,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 # ChromeDriver is what connects Selenium to Chrome
-chromeDriverPath = "/Users/mig/Development/chromedriver_mac_arm64/chromedriver"
+chromeDriverPath = os.environ.get('chromeDriverPath')
 chrome_options = Options()
 # Keeps browser open
 chrome_options.add_experimental_option("detach", True)
