@@ -34,18 +34,36 @@ languageSelect.click()
 
 # Clicking Cookie Button
 cookieButton = driver.find_element(By.ID, "bigCookie")
-orderedProductPrices = driver.find_elements(By.CSS_SELECTOR,)
-orderedProducts = driver.find_elements(By.CSS_SELECTOR,)
 
 while True:
     cookieButton.click()
-    rand = random.uniform(1, 2)
-    if rand == 1:
+    cookieAmt = driver.find_element(By.CSS_SELECTOR, "#sectionLeft #cookies ")
+    cookieAmt = int(cookieAmt.text.split()[0])
+    # orderedProductPrices = driver.find_elements(By.CSS_SELECTOR, "#sectionRight #products .price")
+    # intPrices = [int(price.text) for price in orderedProductPrices]
+
+    try:
+        orderedProductPrices = driver.find_elements(By.CSS_SELECTOR, "#sectionRight #products .price")
+        intPrices = [int(price.text) for price in orderedProductPrices]
+        orderedProducts = driver.find_elements(By.CSS_SELECTOR, "#sectionRight #products "
+                                                                ".unlocked.enabled .content .productName")
+        for oP in orderedProducts:
+            print(oP.text)
         # Product Selection
-        for Prodpi in orderedProductPrices:
-            if cookieAmt >= int(Prodpi):
-                i = orderedProductPrices.index(Prodpi)
+        i = 0
+        for price in intPrices:
+            if cookieAmt >= price:
+                i = intPrices.index(price)
         orderedProducts[i].click()
+    except NoSuchElementException:
+        time.sleep(1)
+    # rand = random.uniform(1, 2)
+    # if rand == 1:
+    # Product Selection
+    # for Productp in orderedProductPrices:
+    #     if cookieAmt >= int(Productp):
+    #         i = orderedProductPrices.index(Productp)
+    # orderedProducts[i].click()
     # else:
     #     # Upgrade Selection
     #     for Prodpi in orderedProductPrices:
